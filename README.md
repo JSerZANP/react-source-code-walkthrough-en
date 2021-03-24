@@ -1,1 +1,1 @@
-# A easy-to-understand walk-through for React Source Code
+# A easy-to-understand walkthrough for React Source Code
