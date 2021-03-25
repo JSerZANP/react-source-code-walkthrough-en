@@ -25,4 +25,54 @@ Babel is used to transform JSX code on the fly, we could just ignore it.
 
 How exactly does `Hello World!` become visible here?
 
-## 1.2
+## 1.2 Chrome Profiler
+
+Open Chrome Dev Tool, and profile it, we can see a lot of work has been done. There is a lot of information in the profiler, but don't worry, we only use a small part of it.
+
+![](../static/1.2.1.png)
+
+The bars of colors mean some work being done, like a function call, most of the green area is code transformation from babel, we can ignore them.
+
+On the right though, we can see the `render` function , which is the `ReactDOM.render()` we have in our HTML, let's zoom in this part.
+
+![](../static/1.2.2.png)
+
+As the arrows illustrate, the direction of the bars is **from top to bottom, then from left to right**. In the above chart,
+
+1. the root call is `render`, which is the `ReactDOM.render()` in our HTML
+2. in `render`, `legacyRenderSubtreeIntoContainer` is called
+3. then in `legacyRenderSubtreeIntoContainer`, `legacyCreateRootFromDOMContainer` and `unbatchedUpdates` are called
+4. ...
+
+You can now easily understand the call tree, right? 
+
+So the last call, which should update the real DOM, should be on the bottom right, seach on the chart, we find `commitPlacement`.
+
+If you focus the bar, at the bottom the location of the function is displayed, let's follow the link - `commitPlacement @ react-dom.development.js:23161`
+
+## 1.3 Set the breakpoints
+
+Click the Source tab on Chrome Dev Tool, navigate to `react-dom.development.js` with `cmd(ctrol) + p`.
+
+Then again type line number with colon `:23161` in the command box to go to `commitPlacement`.
+
+![](../static/1.3.png)
+
+We've found the final function call which alters the real DOM! Hooray! 
+
+Let's set a breack point at the first line within it, then reload. Now program stops at the breakpoint and we can see the call stack on the right.
+
+![](../static/1.3.1.png)
+
+Cool! All the function calls from `render()` to `commitPlacement()` is listed. Click each of them to navigate.
+
+
+
+
+
+
+
+
+
+
+
