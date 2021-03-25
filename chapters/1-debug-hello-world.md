@@ -74,7 +74,7 @@ To understand the code, we need to know what each of the functions does. Let's l
 
 But the tree is too big, let's tackle it level by level.
 
-The first one is [render()](../render.md)
+The first one is [render()](../functions/render.md)
 
 
 
