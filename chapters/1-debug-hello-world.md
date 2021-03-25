@@ -66,7 +66,79 @@ Let's set a breack point at the first line within it, then reload. Now program s
 
 Cool! All the function calls from `render()` to `commitPlacement()` is listed. Click each of them to navigate.
 
+You can then add breakpoints you want and see the data and understand the flow.
 
+## 1.4 From Now On.
+
+To understand the code, we need to know what each of the functions does. Let's list up the functions from profiler.
+
+1. render()
+2. legacyRenderSubtreeIntoContainer()
+    1. legacyCreateRootFromDOMContainer()
+        1. createLegacyRoot()
+            1. ReactDOMLegacyRoot()
+                1. createRootImpl()
+                    1. createContainer()
+                        1. createFiberRoot()
+                            1. FiberRootNode()
+                    2. listenToAllSupportedEvents()
+                        1. listenToNativeEvent()
+                        2. addTrappedEventListener()
+    3. unbatchedUpdates()
+        1. updateContainer()
+            1. markRenderScheduled()
+                1. formatLanes()
+            2. scheduleUpdateOnFiber()
+                1. schedulePendingInteractions()
+                2. performSyncWorkOnRoot()
+                    1. renderRootSync()
+                        1. prepareFreshStack()
+                        2. workLoopSync()
+                            1. performUnitOfWork()
+                                1. beginWork$1()
+                                    1. beginWork()
+                                        1. updateHostRoot()
+                                            1. pushHostRootContext()
+                                                1. pushHostContainer()
+                                                    1. getRootHostContext()
+                                            3. pushCacheProvider()
+                                                1. pushProvider()
+                                            5. reconcileChildren()
+                                                1. reconcileChildFibers()
+                                                    1. reconcileSingleElement()
+                                                        1. createFiberFromElement()
+                                        3. updateHostComponent()
+                                3. completeUnitOfWork
+                                    1. completeWork()
+                                        1. createInstance()
+                                            1. validateDOMNesting()
+                                    2. finalizeInitialChildren()
+                                        1. setInitialProperties()
+                                            1. validatePropertiesInDevelopment()
+                                                1. validateProperties()
+                                                    1. warnInvalidARIAProps()     
+                                                3. validateProperties$2()
+                                                    1. warnUnknownProperties()
+                    3. commitRoot()
+                        1. commitRootImpl()
+                            1. flushRenderPhaseStrictModeWarningsInDEV()
+                            2. commitBeforeMutationEffects()
+                                1. prepareForCommit()
+                                2. commitBeforeMutationEffects_begin()
+                                    1. commitBeforeMutationEffects_complete()
+                                        1. invokeGuardedCallback()
+                                            1. invokeGuardedCallbackDev()
+                                                1. dispatchEvent()
+                                                    1. Event: react-invokeguardedcallback
+                            4. commitMutationEffects()
+                                1. commitMutationEffects_begin()
+                                    1. commitMutationEffects_complete()
+                                        1. invokeGuardedCallback()
+                                            1. invokeGuardedCallbackDev()
+                                                1. dispatchEvent()
+                                                    1. Event: react-invokeguardedcallback
+                            6. commitLayoutEffects()
+                                1. commitLayoutEffects_begin()
 
 
 
