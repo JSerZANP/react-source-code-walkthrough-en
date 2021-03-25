@@ -4,5 +4,5 @@ I see a lot of walkthroughs which are often hard to understand, problem is that 
 
 I'm going to show you how I manage to walk through source code of React, with a (maybe) more practical approach.
 
-[Let's begin](./1-debug-hello-world.md)
+[Let's begin](./chapters/1-debug-hello-world.md)
 
