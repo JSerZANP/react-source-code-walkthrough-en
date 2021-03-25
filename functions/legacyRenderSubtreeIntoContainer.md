@@ -126,7 +126,7 @@ if (!root) {
 2. if initial mount, updateContainer is under `unbatchedUpdates()`.
 
 
-By `batch`, we could infer that things are not updated right away but might be delayed for sometime. 
+By `batch`, we could infer that things are not updated right away but might be delayed for some time. 
 For the first render, we should show users the contents ASAP, so `unmatch`. For the updates, we could delay a little bit considering the smoothness.
 
 Sounds reasonable! 
